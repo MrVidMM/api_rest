@@ -1,0 +1,20 @@
+Crear variable entorno (myEntorno)
+    - python -m venv myEntorno
+
+Acceder a myEntorno
+    - myEntorno\Scripts\activate
+
+Instalar Django en myEntorno
+    - pip install django
+
+Actualizar el pip
+    -  python -m pip install --upgrade pip
+
+Instalar Django Framework
+    - pip install djangorestframework
+
+Instalar MySQL client
+    - pip install mysqlclient
+
+Politicas Cors (Desactivar)
+    - pip install django-cors-headers
