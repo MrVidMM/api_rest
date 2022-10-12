@@ -744,6 +744,17 @@ INSERT INTO `profesor` (`run`, `dv`, `nombre`, `appaterno`, `apmaterno`, `user`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `secciones`
+--
+
+CREATE TABLE `secciones` (
+  `id` int(11) NOT NULL,
+  `codseccion` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipo_user`
 --
 
@@ -864,6 +875,12 @@ ALTER TABLE `profesor`
   ADD PRIMARY KEY (`run`);
 
 --
+-- Indices de la tabla `secciones`
+--
+ALTER TABLE `secciones`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `tipo_user`
 --
 ALTER TABLE `tipo_user`
@@ -932,6 +949,10 @@ ALTER TABLE `django_migrations`
 --
 ALTER TABLE `estudiante`
   MODIFY `run` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21189890;
+-- AUTO_INCREMENT de la tabla `secciones`
+--
+ALTER TABLE `secciones`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_user`
