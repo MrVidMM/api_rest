@@ -4,6 +4,6 @@ from API import views
 
 urlpatterns = [
         re_path(r'^api/Estudiantes/$',views.EstudiantesViewSet.as_view()),
-        re_path(r'^api/Estudiantes/(?P<run>.+)/$',views.EstudianteBuscarViewSet.as_view()),
+        re_path(r'^api/Estudiantes/(?P<user>.+)/(?P<contrasena>.+)/$',views.EstudianteBuscarViewSet.as_view()),
     ]
     
