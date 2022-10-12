@@ -8,6 +8,22 @@
 from django.db import models
 
 
+class Asignatura(models.Model):
+    codigo = models.CharField(primary_key=True, max_length=20)
+    nombre = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'asignatura'
+
+class Curso(models.Model):
+    codigo = models.CharField(primary_key=True, max_length=20)
+    nombre = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'curso'
+
 class Estudiante(models.Model):
     run = models.IntegerField(primary_key=True)
     dv = models.IntegerField()
@@ -34,3 +50,12 @@ class Profesor(models.Model):
     class Meta:
         managed = False
         db_table = 'profesor'
+
+
+class TipoUser(models.Model):
+    id = models.IntegerField(primary_key=True)
+    tipo = models.CharField(max_length=30)
+
+    class Meta:
+        managed = False
+        db_table = 'tipo_user'
