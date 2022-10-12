@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2022 a las 07:28:46
+-- Tiempo de generación: 12-10-2022 a las 17:07:02
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -343,6 +343,17 @@ INSERT INTO `profesor` (`run`, `dv`, `nombre`, `appaterno`, `apmaterno`, `user`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `secciones`
+--
+
+CREATE TABLE `secciones` (
+  `id` int(11) NOT NULL,
+  `codseccion` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipo_user`
 --
 
@@ -462,6 +473,12 @@ ALTER TABLE `profesor`
   ADD PRIMARY KEY (`run`);
 
 --
+-- Indices de la tabla `secciones`
+--
+ALTER TABLE `secciones`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `tipo_user`
 --
 ALTER TABLE `tipo_user`
@@ -536,6 +553,12 @@ ALTER TABLE `django_content_type`
 --
 ALTER TABLE `django_migrations`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `secciones`
+--
+ALTER TABLE `secciones`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_user`
