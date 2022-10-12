@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2022 a las 00:27:57
+-- Tiempo de generación: 12-10-2022 a las 07:28:46
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -22,6 +22,26 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `db_qr_app` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `db_qr_app`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asignatura`
+--
+
+CREATE TABLE `asignatura` (
+  `nombre` varchar(100) NOT NULL,
+  `id` int(11) NOT NULL,
+  `codigo` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `asignatura`
+--
+
+INSERT INTO `asignatura` (`nombre`, `id`, `codigo`) VALUES
+('ESTADISTICA DESCRIPTIVA', 1, 'MAT4140'),
+('PROGRAMACION DE APLICACIONES MOVILES', 2, 'PGY4121');
 
 -- --------------------------------------------------------
 
@@ -87,7 +107,27 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (21, 'Can add session', 6, 'add_session'),
 (22, 'Can change session', 6, 'change_session'),
 (23, 'Can delete session', 6, 'delete_session'),
-(24, 'Can view session', 6, 'view_session');
+(24, 'Can view session', 6, 'view_session'),
+(25, 'Can add asignatura', 7, 'add_asignatura'),
+(26, 'Can change asignatura', 7, 'change_asignatura'),
+(27, 'Can delete asignatura', 7, 'delete_asignatura'),
+(28, 'Can view asignatura', 7, 'view_asignatura'),
+(29, 'Can add curso', 8, 'add_curso'),
+(30, 'Can change curso', 8, 'change_curso'),
+(31, 'Can delete curso', 8, 'delete_curso'),
+(32, 'Can view curso', 8, 'view_curso'),
+(33, 'Can add estudiante', 9, 'add_estudiante'),
+(34, 'Can change estudiante', 9, 'change_estudiante'),
+(35, 'Can delete estudiante', 9, 'delete_estudiante'),
+(36, 'Can view estudiante', 9, 'view_estudiante'),
+(37, 'Can add profesor', 10, 'add_profesor'),
+(38, 'Can change profesor', 10, 'change_profesor'),
+(39, 'Can delete profesor', 10, 'delete_profesor'),
+(40, 'Can view profesor', 10, 'view_profesor'),
+(41, 'Can add tipo user', 11, 'add_tipouser'),
+(42, 'Can change tipo user', 11, 'change_tipouser'),
+(43, 'Can delete tipo user', 11, 'delete_tipouser'),
+(44, 'Can view tipo user', 11, 'view_tipouser');
 
 -- --------------------------------------------------------
 
@@ -136,6 +176,29 @@ CREATE TABLE `auth_user_user_permissions` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `curso`
+--
+
+CREATE TABLE `curso` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `curso`
+--
+
+INSERT INTO `curso` (`id`, `nombre`) VALUES
+(1, 'PROGRAMACION DE APLICACIONES MOVILES_001D'),
+(2, 'PROGRAMACION DE APLICACIONES MOVILES_002D'),
+(3, 'PROGRAMACION DE APLICACIONES MOVILES_003D'),
+(4, 'ESTADISTICA DESCRIPTIVA_004D'),
+(5, 'ESTADISTICA DESCRIPTIVA_005D'),
+(6, 'ESTADISTICA DESCRIPTIVA_006D');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `django_admin_log`
 --
 
@@ -168,6 +231,11 @@ CREATE TABLE `django_content_type` (
 
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (1, 'admin', 'logentry'),
+(7, 'API', 'asignatura'),
+(8, 'API', 'curso'),
+(9, 'API', 'estudiante'),
+(10, 'API', 'profesor'),
+(11, 'API', 'tipouser'),
 (3, 'auth', 'group'),
 (2, 'auth', 'permission'),
 (4, 'auth', 'user'),
@@ -209,7 +277,8 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (15, 'auth', '0010_alter_group_name_max_length', '2022-10-01 02:11:57.452739'),
 (16, 'auth', '0011_update_proxy_permissions', '2022-10-01 02:11:57.458719'),
 (17, 'auth', '0012_alter_user_first_name_max_length', '2022-10-01 02:11:57.470668'),
-(18, 'sessions', '0001_initial', '2022-10-01 02:11:57.491626');
+(18, 'sessions', '0001_initial', '2022-10-01 02:11:57.491626'),
+(19, 'API', '0001_initial', '2022-10-12 01:25:51.029475');
 
 -- --------------------------------------------------------
 
@@ -264,8 +333,42 @@ CREATE TABLE `profesor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `profesor`
+--
+
+INSERT INTO `profesor` (`run`, `dv`, `nombre`, `appaterno`, `apmaterno`, `user`, `contrasena`) VALUES
+(11111111, 1, 'FREDDY', 'CAMPOS', 'ORELLANA', 'fre.camposo', '11111111'),
+(22222222, 2, 'JUAN', 'BARRERA', 'LABRA', 'ju.barrera', '22222222');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_user`
+--
+
+CREATE TABLE `tipo_user` (
+  `tipo` varchar(30) NOT NULL,
+  `ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tipo_user`
+--
+
+INSERT INTO `tipo_user` (`tipo`, `ID`) VALUES
+('Admin', 1),
+('Alumno', 2),
+('Profesor', 3);
+
+--
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `asignatura`
+--
+ALTER TABLE `asignatura`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `auth_group`
@@ -313,6 +416,12 @@ ALTER TABLE `auth_user_user_permissions`
   ADD KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`);
 
 --
+-- Indices de la tabla `curso`
+--
+ALTER TABLE `curso`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
@@ -353,8 +462,20 @@ ALTER TABLE `profesor`
   ADD PRIMARY KEY (`run`);
 
 --
+-- Indices de la tabla `tipo_user`
+--
+ALTER TABLE `tipo_user`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `asignatura`
+--
+ALTER TABLE `asignatura`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `auth_group`
@@ -372,7 +493,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT de la tabla `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `auth_user`
@@ -393,6 +514,12 @@ ALTER TABLE `auth_user_user_permissions`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `curso`
+--
+ALTER TABLE `curso`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de la tabla `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
@@ -402,13 +529,19 @@ ALTER TABLE `django_admin_log`
 -- AUTO_INCREMENT de la tabla `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_user`
+--
+ALTER TABLE `tipo_user`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
