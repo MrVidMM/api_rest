@@ -33,7 +33,8 @@ class AsignaturasBuscarViewSet(generics.ListAPIView):
 	serializer_class = AsignaturasSerializers
 	def get_queryset(self): #Recupera un elemento desde al ruta
 		id = self.kwargs['id_asig'] #Recuperamos el parametro ID como argumento
-		return Asignatura.objects.filter(id_asig = id)
+		rut = self.kwargs['run']
+		return Asignatura.objects.filter(id_asig = id, run = rut)
 
 class CursosViewSet(generics.ListAPIView):
 	serializer_class = CursosSerializers

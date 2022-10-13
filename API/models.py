@@ -12,6 +12,7 @@ class Asignatura(models.Model):
     nombre = models.CharField(max_length=100)
     id_asig = models.AutoField(primary_key=True)
     codigo = models.CharField(max_length=10)
+    run = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

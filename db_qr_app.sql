@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-10-2022 a las 05:38:40
+-- Tiempo de generación: 13-10-2022 a las 14:56:31
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -32,16 +32,17 @@ USE `db_qr_app`;
 CREATE TABLE `asignatura` (
   `nombre` varchar(100) NOT NULL,
   `id_asig` int(11) NOT NULL,
-  `codigo` varchar(10) NOT NULL
+  `codigo` varchar(10) NOT NULL,
+  `run` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `asignatura`
 --
 
-INSERT INTO `asignatura` (`nombre`, `id_asig`, `codigo`) VALUES
-('ESTADISTICA DESCRIPTIVA', 1, 'MAT4140'),
-('PROGRAMACION DE APLICACIONES MOVILES', 2, 'PGY4121');
+INSERT INTO `asignatura` (`nombre`, `id_asig`, `codigo`, `run`) VALUES
+('ESTADISTICA DESCRIPTIVA', 1, 'MAT4140', 22222222),
+('PROGRAMACION DE APLICACIONES MOVILES', 2, 'PGY4121', 11111111);
 
 -- --------------------------------------------------------
 
@@ -348,7 +349,8 @@ INSERT INTO `usuario` (`run`, `dv`, `nombre`, `appaterno`, `apmaterno`, `user`, 
 -- Indices de la tabla `asignatura`
 --
 ALTER TABLE `asignatura`
-  ADD PRIMARY KEY (`id_asig`);
+  ADD PRIMARY KEY (`id_asig`),
+  ADD KEY `run` (`run`);
 
 --
 -- Indices de la tabla `auth_group`
