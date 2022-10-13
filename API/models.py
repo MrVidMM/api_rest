@@ -18,7 +18,6 @@ class Asignatura(models.Model):
         db_table = 'asignatura'
 
 class Curso(models.Model):
-    nombre = models.CharField(max_length=100)
     id_curso = models.AutoField(primary_key=True)
     secciones = models.CharField(max_length=100)
     id_asig = models.IntegerField(blank=True, null=True)
@@ -27,34 +26,6 @@ class Curso(models.Model):
         managed = False
         db_table = 'curso'
 
-class Estudiante(models.Model):
-    run = models.IntegerField(primary_key=True)
-    dv = models.IntegerField()
-    nombre = models.CharField(max_length=30)
-    appaterno = models.CharField(max_length=20)
-    apmaterno = models.CharField(max_length=20)
-    user = models.CharField(max_length=30)
-    contrasena = models.CharField(max_length=30)
-    id_tipo = models.ForeignKey('TipoUser', models.DO_NOTHING, db_column='id_tipo', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'estudiante'
-
-class Profesor(models.Model):
-    run = models.IntegerField(primary_key=True)
-    dv = models.IntegerField()
-    nombre = models.CharField(max_length=30)
-    appaterno = models.CharField(max_length=20)
-    apmaterno = models.CharField(max_length=20)
-    user = models.CharField(max_length=30)
-    contrasena = models.CharField(max_length=30)
-    id_tipo = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'profesor'
-
 class TipoUser(models.Model):
     id_tipo = models.AutoField(primary_key=True)
     tipo = models.CharField(max_length=30)
@@ -62,3 +33,18 @@ class TipoUser(models.Model):
     class Meta:
         managed = False
         db_table = 'tipo_user'
+
+
+class Usuario(models.Model):
+    run = models.IntegerField(primary_key=True)
+    dv = models.CharField(max_length=1)
+    nombre = models.CharField(max_length=30)
+    appaterno = models.CharField(max_length=30)
+    apmaterno = models.CharField(max_length=30)
+    user = models.CharField(max_length=30)
+    contrasena = models.CharField(max_length=30)
+    id_tipo = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'usuario'

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-10-2022 a las 00:36:21
+-- Tiempo de generación: 13-10-2022 a las 05:38:40
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -180,7 +180,6 @@ CREATE TABLE `auth_user_user_permissions` (
 --
 
 CREATE TABLE `curso` (
-  `nombre` varchar(100) NOT NULL,
   `id_curso` int(11) NOT NULL,
   `secciones` varchar(100) NOT NULL,
   `id_asig` int(11) DEFAULT NULL
@@ -190,13 +189,13 @@ CREATE TABLE `curso` (
 -- Volcado de datos para la tabla `curso`
 --
 
-INSERT INTO `curso` (`nombre`, `id_curso`, `secciones`, `id_asig`) VALUES
-('PROGRAMACION DE APLICACIONES MOVILES', 1, '001D', 1),
-('PROGRAMACION DE APLICACIONES MOVILES', 2, '002D', 1),
-('PROGRAMACION DE APLICACIONES MOVILES', 3, '003D', 1),
-('ESTADISTICA DESCRIPTIVA', 4, '004D', 2),
-('ESTADISTICA DESCRIPTIVA', 5, '005D', 2),
-('ESTADISTICA DESCRIPTIVA', 6, '006D', 2);
+INSERT INTO `curso` (`id_curso`, `secciones`, `id_asig`) VALUES
+(1, 'Sección 001D', 1),
+(2, 'Sección 002D', 1),
+(3, 'Sección 003D', 1),
+(4, 'Sección 004D', 2),
+(5, 'Sección 005D', 2),
+(6, 'Sección 006D', 2);
 
 -- --------------------------------------------------------
 
@@ -297,56 +296,6 @@ CREATE TABLE `django_session` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estudiante`
---
-
-CREATE TABLE `estudiante` (
-  `run` int(8) NOT NULL,
-  `dv` int(1) NOT NULL,
-  `nombre` varchar(30) NOT NULL,
-  `appaterno` varchar(20) NOT NULL,
-  `apmaterno` varchar(20) NOT NULL,
-  `user` varchar(30) NOT NULL,
-  `contrasena` varchar(30) NOT NULL,
-  `id_tipo` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `estudiante`
---
-
-INSERT INTO `estudiante` (`run`, `dv`, `nombre`, `appaterno`, `apmaterno`, `user`, `contrasena`, `id_tipo`) VALUES
-(20906454, 5, 'David', 'Martinez', 'Manciet', 'dav.martinez', '20906454', 2),
-(21189889, 5, 'Javier', 'Inostroza', 'Marambio', 'ja.inostroza', '21189889', 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `profesor`
---
-
-CREATE TABLE `profesor` (
-  `run` int(8) NOT NULL,
-  `dv` int(1) NOT NULL,
-  `nombre` varchar(30) NOT NULL,
-  `appaterno` varchar(20) NOT NULL,
-  `apmaterno` varchar(20) NOT NULL,
-  `user` varchar(30) NOT NULL,
-  `contrasena` varchar(30) NOT NULL,
-  `id_tipo` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `profesor`
---
-
-INSERT INTO `profesor` (`run`, `dv`, `nombre`, `appaterno`, `apmaterno`, `user`, `contrasena`, `id_tipo`) VALUES
-(11111111, 1, 'FREDDY', 'CAMPOS', 'ORELLANA', 'fre.camposo', '11111111', 3),
-(22222222, 2, 'JUAN', 'BARRERA', 'LABRA', 'ju.barrera', '22222222', 3);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `tipo_user`
 --
 
@@ -363,6 +312,33 @@ INSERT INTO `tipo_user` (`id_tipo`, `tipo`) VALUES
 (1, 'Admin'),
 (2, 'Alumno'),
 (3, 'Profesor');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `run` int(11) NOT NULL,
+  `dv` varchar(1) NOT NULL,
+  `nombre` varchar(30) NOT NULL,
+  `appaterno` varchar(30) NOT NULL,
+  `apmaterno` varchar(30) NOT NULL,
+  `user` varchar(30) NOT NULL,
+  `contrasena` varchar(30) NOT NULL,
+  `id_tipo` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`run`, `dv`, `nombre`, `appaterno`, `apmaterno`, `user`, `contrasena`, `id_tipo`) VALUES
+(11111111, '1', 'FREDDY', 'CAMPOS', 'ORELLANA', 'fre.camposo', '11111111', 3),
+(20906454, '5', 'David', 'Martinez', 'Manciet', 'dav.martinez', '20906454', 2),
+(21189889, '5', 'Javier', 'Inostroza', 'Marambio', 'ja.inostroza', '21189889', 2),
+(22222222, '2', 'JUAN', 'BARRERA', 'LABRA', 'ju.barrera', '22222222', 3);
 
 --
 -- Índices para tablas volcadas
@@ -455,24 +431,17 @@ ALTER TABLE `django_session`
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
--- Indices de la tabla `estudiante`
---
-ALTER TABLE `estudiante`
-  ADD PRIMARY KEY (`run`),
-  ADD KEY `id_tipo` (`id_tipo`) USING BTREE;
-
---
--- Indices de la tabla `profesor`
---
-ALTER TABLE `profesor`
-  ADD PRIMARY KEY (`run`),
-  ADD KEY `id_tipo` (`id_tipo`);
-
---
 -- Indices de la tabla `tipo_user`
 --
 ALTER TABLE `tipo_user`
   ADD PRIMARY KEY (`id_tipo`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`run`),
+  ADD KEY `id_tipo` (`id_tipo`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -587,12 +556,6 @@ ALTER TABLE `auth_user_user_permissions`
 ALTER TABLE `django_admin_log`
   ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
-
---
--- Filtros para la tabla `estudiante`
---
-ALTER TABLE `estudiante`
-  ADD CONSTRAINT `estudiante_ibfk_1` FOREIGN KEY (`id_tipo`) REFERENCES `tipo_user` (`id_tipo`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
