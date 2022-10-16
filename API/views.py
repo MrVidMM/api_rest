@@ -36,12 +36,32 @@ class AsignaturasBuscarViewSet(generics.ListAPIView):
 		rut = self.kwargs['run']
 		return Asignatura.objects.filter(run = rut)
 
-class CursosViewSet(generics.ListAPIView):
-	serializer_class = CursosSerializers
-	queryset = Curso.objects.all()
+class AsistenciaViewSet(generics.ListAPIView):
+	serializer_class = AsistenciaSerializers
+	queryset = Asistencia.objects.all()
 
-class CursosBuscarViewSet(generics.ListAPIView):
-	serializer_class = CursosSerializers
+class AsistenciaBuscarViewSet(generics.ListAPIView):
+	serializer_class = AsistenciaSerializers
 	def get_queryset(self): #Recupera un elemento desde al ruta
-		id = self.kwargs['id_curso'] #Recuperamos el parametro ID como argumento
-		return Curso.objects.filter(id_curso = id)
+		id = self.kwargs['id_asis'] #Recuperamos el parametro ID como argumento
+		return Asistencia.objects.filter(id_asis = id)
+
+class JornadaViewSet(generics.ListAPIView):
+	serializer_class = JornadaSerializers
+	queryset = Jornada.objects.all()
+
+class JornadaBuscarViewSet(generics.ListAPIView):
+	serializer_class = JornadaSerializers
+	def get_queryset(self): #Recupera un elemento desde al ruta
+		id = self.kwargs['id_jornada'] #Recuperamos el parametro ID como argumento
+		return Jornada.objects.filter(id_jornada = id)
+
+class SeccionesViewSet(generics.ListAPIView):
+	serializer_class = SeccionesSerializers
+	queryset = Secciones.objects.all()
+
+class SeccionesBuscarViewSet(generics.ListAPIView):
+	serializer_class = SeccionesSerializers
+	def get_queryset(self): #Recupera un elemento desde al ruta
+		id = self.kwargs['id_seccion'] #Recuperamos el parametro ID como argumento
+		return Seccion.objects.filter(id_seccion = id)

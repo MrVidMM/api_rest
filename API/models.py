@@ -11,21 +11,44 @@ from django.db import models
 class Asignatura(models.Model):
     nombre = models.CharField(max_length=100)
     id_asig = models.AutoField(primary_key=True)
-    codigo = models.CharField(max_length=10)
     run = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'asignatura'
 
-class Curso(models.Model):
-    id_curso = models.AutoField(primary_key=True)
-    secciones = models.CharField(max_length=100)
+
+class Asistencia(models.Model):
+    id_asis = models.AutoField(primary_key=True)
+    run = models.IntegerField(blank=True, null=True)
+    id_jornada = models.IntegerField(blank=True, null=True)
+    id_seccion = models.IntegerField(blank=True, null=True)
+    asistencia = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'asistencia'
+
+class Jornada(models.Model):
+    id_jornada = models.AutoField(primary_key=True)
+    sigla = models.CharField(max_length=8)
+    jornada = models.CharField(max_length=10)
     id_asig = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'curso'
+        db_table = 'jornada'
+
+
+class Secciones(models.Model):
+    id_seccion = models.AutoField(primary_key=True)
+    seccion = models.CharField(max_length=6)
+    id_jornada = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'secciones'
+
 
 class TipoUser(models.Model):
     id_tipo = models.AutoField(primary_key=True)
