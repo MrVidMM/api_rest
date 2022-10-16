@@ -4,12 +4,11 @@ from .models import *
 from rest_framework import generics
 
 # Create your views here.
-
 class UsuariosViewSet(generics.ListAPIView):
 	queryset = Usuario.objects.all()
 	serializer_class = UsuariosSerializers
 
-class UsuarioBuscarViewSet(generics.ListAPIView):
+class UsuarioSesionViewSet(generics.ListAPIView):
 	serializer_class = UsuariosSerializers
 	def get_queryset(self): #Recupera un elemento desde al ruta
 		usuario = self.kwargs['user'] #Recuperamos el parametro ID como argumento
@@ -30,22 +29,11 @@ class AsignaturasViewSet(generics.ListAPIView):
 	serializer_class = AsignaturasSerializers
 	queryset = Asignatura.objects.all()
 
-class AsignaturasBuscarViewSet(generics.ListAPIView):
+class AsignaturasProfesorViewSet(generics.ListAPIView):
 	serializer_class = AsignaturasSerializers
 	def get_queryset(self): #Recupera un elemento desde al ruta
 		rut = self.kwargs['run']
 		return Asignatura.objects.filter(run = rut)
-
-class AsistenciaViewSet(generics.ListAPIView):
-	serializer_class = AsistenciaSerializers
-	queryset = Asistencia.objects.all()
-
-class AsistenciaBuscarViewSet(generics.ListAPIView):
-	serializer_class = AsistenciaSerializers
-	def get_queryset(self): #Recupera un elemento desde al ruta
-		id = self.kwargs['id_asis'] #Recuperamos el parametro ID como argumento
-		return Asistencia.objects.filter(id_asis = id)
-
 class JornadaViewSet(generics.ListAPIView):
 	serializer_class = JornadaSerializers
 	queryset = Jornada.objects.all()
@@ -56,12 +44,27 @@ class JornadaBuscarViewSet(generics.ListAPIView):
 		id = self.kwargs['id_jornada'] #Recuperamos el parametro ID como argumento
 		return Jornada.objects.filter(id_jornada = id)
 
+class JornadaAsignatura(generics.ListAPIView):
+	serializer_class = JornadaSerializers
+	def get_queryset(self): #Recupera un elemento desde al ruta
+		id = self.kwargs['id_asig'] #Recuperamos el parametro ID como argumento
+		return Jornada.objects.filter(id_jornada = id)
+
 class SeccionesViewSet(generics.ListAPIView):
 	serializer_class = SeccionesSerializers
 	queryset = Secciones.objects.all()
-
-class SeccionesBuscarViewSet(generics.ListAPIView):
+class SeccionesJornadaViewSet(generics.ListAPIView):
 	serializer_class = SeccionesSerializers
 	def get_queryset(self): #Recupera un elemento desde al ruta
-		id = self.kwargs['id_seccion'] #Recuperamos el parametro ID como argumento
-		return Seccion.objects.filter(id_seccion = id)
+		id = self.kwargs['id_jornada'] #Recuperamos el parametro ID como argumento
+		return Secciones.objects.filter(id_jornada = id)
+
+class AsistenciaViewSet(generics.ListAPIView):
+	serializer_class = AsistenciaSerializers
+	queryset = Asistencia.objects.all()
+
+class AsistenciaBuscarViewSet(generics.ListAPIView):
+	serializer_class = AsistenciaSerializers
+	def get_queryset(self): #Recupera un elemento desde al ruta
+		id = self.kwargs['run'] #Recuperamos el parametro ID como argumento
+		return Asistencia.objects.filter(run = id)
