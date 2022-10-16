@@ -14,6 +14,7 @@ class UsuarioBuscarViewSet(generics.ListAPIView):
 	def get_queryset(self): #Recupera un elemento desde al ruta
 		usuario = self.kwargs['user'] #Recuperamos el parametro ID como argumento
 		password = self.kwargs['contrasena'] #Recuperamos el parametro ID como argumento
+		#tipo_user = self.kwargs['id_tipo'] #Recuperamos el parametro ID como argumento
 		return Usuario.objects.filter(user = usuario, contrasena = password)
 class TipoUserViewSet(generics.ListAPIView):
 	serializer_class = TipoUserSerializers
@@ -32,9 +33,8 @@ class AsignaturasViewSet(generics.ListAPIView):
 class AsignaturasBuscarViewSet(generics.ListAPIView):
 	serializer_class = AsignaturasSerializers
 	def get_queryset(self): #Recupera un elemento desde al ruta
-		id = self.kwargs['id_asig'] #Recuperamos el parametro ID como argumento
 		rut = self.kwargs['run']
-		return Asignatura.objects.filter(id_asig = id, run = rut)
+		return Asignatura.objects.filter(run = rut)
 
 class CursosViewSet(generics.ListAPIView):
 	serializer_class = CursosSerializers
