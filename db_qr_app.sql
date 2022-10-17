@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-10-2022 a las 14:56:31
+-- Tiempo de generación: 17-10-2022 a las 21:52:20
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -32,7 +32,6 @@ USE `db_qr_app`;
 CREATE TABLE `asignatura` (
   `nombre` varchar(100) NOT NULL,
   `id_asig` int(11) NOT NULL,
-  `codigo` varchar(10) NOT NULL,
   `run` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -40,9 +39,47 @@ CREATE TABLE `asignatura` (
 -- Volcado de datos para la tabla `asignatura`
 --
 
-INSERT INTO `asignatura` (`nombre`, `id_asig`, `codigo`, `run`) VALUES
-('ESTADISTICA DESCRIPTIVA', 1, 'MAT4140', 22222222),
-('PROGRAMACION DE APLICACIONES MOVILES', 2, 'PGY4121', 11111111);
+INSERT INTO `asignatura` (`nombre`, `id_asig`, `run`) VALUES
+('ESTADISTICA DESCRIPTIVA', 1, 22222222),
+('PROGRAMACION DE APLICACIONES MOVILES', 2, 11111111),
+('MATEMATICA APLICADA', 3, 22222222),
+('PROGRAMACION WEB', 4, 11111111);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asistencia`
+--
+
+CREATE TABLE `asistencia` (
+  `id_asis` int(11) NOT NULL,
+  `run` int(11) DEFAULT NULL,
+  `id_jornada` int(11) DEFAULT NULL,
+  `id_seccion` int(11) DEFAULT NULL,
+  `asistencia` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `asistencia`
+--
+
+INSERT INTO `asistencia` (`id_asis`, `run`, `id_jornada`, `id_seccion`, `asistencia`) VALUES
+(1, 20906454, 1, 1, 0),
+(3, 20906454, 1, 3, 0),
+(4, 20906454, 2, 2, 0),
+(5, 20906454, 2, 4, 0),
+(6, 20906454, 3, 5, 0),
+(7, 20906454, 3, 7, 0),
+(8, 20906454, 4, 6, 0),
+(9, 20906454, 4, 8, 0),
+(10, 21189889, 1, 1, 0),
+(11, 21189889, 1, 3, 0),
+(12, 21189889, 2, 2, 0),
+(13, 21189889, 2, 4, 0),
+(14, 21189889, 3, 5, 0),
+(15, 21189889, 3, 7, 0),
+(16, 21189889, 4, 6, 0),
+(17, 21189889, 4, 8, 0);
 
 -- --------------------------------------------------------
 
@@ -177,30 +214,6 @@ CREATE TABLE `auth_user_user_permissions` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `curso`
---
-
-CREATE TABLE `curso` (
-  `id_curso` int(11) NOT NULL,
-  `secciones` varchar(100) NOT NULL,
-  `id_asig` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `curso`
---
-
-INSERT INTO `curso` (`id_curso`, `secciones`, `id_asig`) VALUES
-(1, 'Sección 001D', 1),
-(2, 'Sección 002D', 1),
-(3, 'Sección 003D', 1),
-(4, 'Sección 004D', 2),
-(5, 'Sección 005D', 2),
-(6, 'Sección 006D', 2);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `django_admin_log`
 --
 
@@ -297,6 +310,55 @@ CREATE TABLE `django_session` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `jornada`
+--
+
+CREATE TABLE `jornada` (
+  `id_jornada` int(11) NOT NULL,
+  `sigla` varchar(8) NOT NULL,
+  `jornada` varchar(10) NOT NULL,
+  `id_asig` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `jornada`
+--
+
+INSERT INTO `jornada` (`id_jornada`, `sigla`, `jornada`, `id_asig`) VALUES
+(1, 'MAT4140', 'DIURNO', 1),
+(2, 'MATE4142', 'VESPERTINO', 3),
+(3, 'PGY4121', 'DIURNO', 2),
+(4, 'WEB4252', 'VESPERTINO', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `secciones`
+--
+
+CREATE TABLE `secciones` (
+  `id_seccion` int(11) NOT NULL,
+  `seccion` varchar(6) NOT NULL,
+  `id_jornada` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `secciones`
+--
+
+INSERT INTO `secciones` (`id_seccion`, `seccion`, `id_jornada`) VALUES
+(1, '002D', 1),
+(2, '004V', 2),
+(3, '005D', 1),
+(4, '006V', 2),
+(5, '003D', 3),
+(6, '004V', 4),
+(7, '001D', 3),
+(8, '015V', 4);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipo_user`
 --
 
@@ -353,6 +415,15 @@ ALTER TABLE `asignatura`
   ADD KEY `run` (`run`);
 
 --
+-- Indices de la tabla `asistencia`
+--
+ALTER TABLE `asistencia`
+  ADD PRIMARY KEY (`id_asis`),
+  ADD KEY `run` (`run`),
+  ADD KEY `id_jornada` (`id_jornada`),
+  ADD KEY `id_seccion` (`id_seccion`);
+
+--
 -- Indices de la tabla `auth_group`
 --
 ALTER TABLE `auth_group`
@@ -398,13 +469,6 @@ ALTER TABLE `auth_user_user_permissions`
   ADD KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`);
 
 --
--- Indices de la tabla `curso`
---
-ALTER TABLE `curso`
-  ADD PRIMARY KEY (`id_curso`),
-  ADD KEY `id_asig` (`id_asig`);
-
---
 -- Indices de la tabla `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
@@ -433,6 +497,20 @@ ALTER TABLE `django_session`
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
+-- Indices de la tabla `jornada`
+--
+ALTER TABLE `jornada`
+  ADD PRIMARY KEY (`id_jornada`),
+  ADD KEY `id_asig` (`id_asig`);
+
+--
+-- Indices de la tabla `secciones`
+--
+ALTER TABLE `secciones`
+  ADD PRIMARY KEY (`id_seccion`),
+  ADD KEY `id_jornada` (`id_jornada`);
+
+--
 -- Indices de la tabla `tipo_user`
 --
 ALTER TABLE `tipo_user`
@@ -453,7 +531,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `asignatura`
 --
 ALTER TABLE `asignatura`
-  MODIFY `id_asig` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_asig` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `asistencia`
+--
+ALTER TABLE `asistencia`
+  MODIFY `id_asis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `auth_group`
@@ -492,12 +576,6 @@ ALTER TABLE `auth_user_user_permissions`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `curso`
---
-ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
 -- AUTO_INCREMENT de la tabla `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
@@ -514,6 +592,18 @@ ALTER TABLE `django_content_type`
 --
 ALTER TABLE `django_migrations`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `jornada`
+--
+ALTER TABLE `jornada`
+  MODIFY `id_jornada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `secciones`
+--
+ALTER TABLE `secciones`
+  MODIFY `id_seccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_user`
