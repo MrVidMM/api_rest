@@ -54,7 +54,7 @@ class JornadaAsignatura(generics.ListAPIView):
 	serializer_class = JornadaSerializers
 	def get_queryset(self): #Recupera un elemento desde al ruta
 		id = self.kwargs['id_asig'] #Recuperamos el parametro ID como argumento
-		return Jornada.objects.filter(id_jornada = id)
+		return Jornada.objects.filter(id_asig = id)
 
 class SeccionesViewSet(generics.ListAPIView):
 	serializer_class = SeccionesSerializers
