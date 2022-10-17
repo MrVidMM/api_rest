@@ -9,6 +9,7 @@ urlpatterns = [
         re_path(r'^api/TipoUser/(?P<id_tipo>.+)/$',views.TipoUserBuscarViewSet.as_view()),
         re_path(r'^api/Asignaturas/$',views.AsignaturasViewSet.as_view()),
         re_path(r'^api/Asignaturas/(?P<run>.+)/$',views.AsignaturasProfesorViewSet.as_view()),
+        re_path(r'^api/Asignatura/(?P<id_asig>.+)/$',views.AsignaturasBuscarViewSet.as_view()),
         re_path(r'^api/Jornada/$',views.JornadaViewSet.as_view()),
         re_path(r'^api/Jornada/(?P<id_jornada>.+)/$',views.JornadaBuscarViewSet.as_view()),
         re_path(r'^api/Jornada/(?P<id_asig>.+)/$',views.JornadaAsignatura.as_view()),
