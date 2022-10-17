@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2022 a las 21:52:20
+-- Tiempo de generación: 17-10-2022 a las 22:42:42
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -65,21 +65,21 @@ CREATE TABLE `asistencia` (
 
 INSERT INTO `asistencia` (`id_asis`, `run`, `id_jornada`, `id_seccion`, `asistencia`) VALUES
 (1, 20906454, 1, 1, 0),
-(3, 20906454, 1, 3, 0),
-(4, 20906454, 2, 2, 0),
-(5, 20906454, 2, 4, 0),
-(6, 20906454, 3, 5, 0),
-(7, 20906454, 3, 7, 0),
-(8, 20906454, 4, 6, 0),
-(9, 20906454, 4, 8, 0),
+(2, 20906454, 2, 2, 0),
+(4, 20906454, 3, 3, 0),
+(5, 20906454, 4, 4, 0),
+(6, 20906454, 5, 5, 0),
+(7, 20906454, 6, 6, 0),
+(8, 20906454, 7, 7, 0),
+(9, 20906454, 8, 8, 0),
 (10, 21189889, 1, 1, 0),
-(11, 21189889, 1, 3, 0),
-(12, 21189889, 2, 2, 0),
-(13, 21189889, 2, 4, 0),
-(14, 21189889, 3, 5, 0),
-(15, 21189889, 3, 7, 0),
-(16, 21189889, 4, 6, 0),
-(17, 21189889, 4, 8, 0);
+(11, 21189889, 2, 2, 0),
+(12, 21189889, 3, 3, 0),
+(13, 21189889, 4, 4, 0),
+(14, 21189889, 5, 5, 0),
+(15, 21189889, 6, 6, 0),
+(16, 21189889, 7, 7, 0),
+(17, 21189889, 8, 8, 0);
 
 -- --------------------------------------------------------
 
@@ -328,7 +328,11 @@ INSERT INTO `jornada` (`id_jornada`, `sigla`, `jornada`, `id_asig`) VALUES
 (1, 'MAT4140', 'DIURNO', 1),
 (2, 'MATE4142', 'VESPERTINO', 3),
 (3, 'PGY4121', 'DIURNO', 2),
-(4, 'WEB4252', 'VESPERTINO', 4);
+(4, 'WEB4252', 'VESPERTINO', 4),
+(5, 'MATA4141', 'VESPERTINO', 1),
+(6, 'MATE4242', 'DIURNO', 3),
+(7, 'PGY4242', 'VESPERTINO', 2),
+(8, 'WEB4353', 'DIURNO', 4);
 
 -- --------------------------------------------------------
 
@@ -349,12 +353,12 @@ CREATE TABLE `secciones` (
 INSERT INTO `secciones` (`id_seccion`, `seccion`, `id_jornada`) VALUES
 (1, '002D', 1),
 (2, '004V', 2),
-(3, '005D', 1),
-(4, '006V', 2),
-(5, '003D', 3),
-(6, '004V', 4),
-(7, '001D', 3),
-(8, '015V', 4);
+(3, '003D', 3),
+(4, '004V', 4),
+(5, '013V', 5),
+(6, '085D', 6),
+(7, '101V', 7),
+(8, '099D', 8);
 
 -- --------------------------------------------------------
 
@@ -597,13 +601,13 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT de la tabla `jornada`
 --
 ALTER TABLE `jornada`
-  MODIFY `id_jornada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_jornada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `secciones`
 --
 ALTER TABLE `secciones`
-  MODIFY `id_seccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_seccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_user`
