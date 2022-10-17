@@ -68,7 +68,6 @@ class Usuario(models.Model):
     user = models.CharField(max_length=30)
     contrasena = models.CharField(max_length=30)
     id_tipo = models.IntegerField(blank=True, null=True)
-    perfil = models.TextField()
 
     class Meta:
         managed = False
