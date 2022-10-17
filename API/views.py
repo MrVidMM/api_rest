@@ -34,6 +34,12 @@ class AsignaturasProfesorViewSet(generics.ListAPIView):
 	def get_queryset(self): #Recupera un elemento desde al ruta
 		rut = self.kwargs['run']
 		return Asignatura.objects.filter(run = rut)
+
+class AsignaturasBuscarViewSet(generics.ListAPIView):
+	serializer_class = AsignaturasSerializers
+	def get_queryset(self): #Recupera un elemento desde al ruta
+		id = self.kwargs['id_asig']
+		return Asignatura.objects.filter(id_asig = id)
 class JornadaViewSet(generics.ListAPIView):
 	serializer_class = JornadaSerializers
 	queryset = Jornada.objects.all()
