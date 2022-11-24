@@ -1,1 +1,1 @@
-web: gunicorn api_rest.wgsi
+web: gunicorn api_rest.wsgi
