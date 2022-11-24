@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-d9=csa3w-2*ks0xy8qc)fjky^ui8-kuoc7ht@u#7h8=48f)yj-
 DEBUG = False
 CORS_ALLOWED_ORIGINS = ['https://registerappjd.herokuapp.com/']
 ALLOWED_HOSTS = ['*']
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGIN = True
 CORS_ALLOW_METHODS = [
     "DELETE",
     "GET",
@@ -37,6 +37,7 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT",
 ]
+CORS_ORIGIN_WHITELIST=['https://registerappjd.herokuapp.com/']
 
 # Application definition
 
