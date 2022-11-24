@@ -37,3 +37,4 @@ tzdata==2022.4
 wcwidth==0.2.5
 whitenoise==6.2.0
 django-cors-headers==3.13.0
+django-heroku==0.3.1
