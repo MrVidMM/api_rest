@@ -86,8 +86,8 @@ class AsistenciaModificarViewSet(generics.UpdateAPIView):
     def get_queryset(self):
         run_persona = self.kwargs['run']
         return Asistencia.objects.filter(run=run_persona)
-    def delete(self,request):
-        run_persona = self.kwargs['run']
+    def delete(self,request,run=None):
+        run_persona = run
         print('--'+run_persona)
         p = Asistencia.objects.filter(run=run_persona)
         if p:
