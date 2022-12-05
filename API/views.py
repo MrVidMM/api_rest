@@ -19,8 +19,8 @@ class UsuarioSesionViewSet(generics.ListAPIView):
 class UsuarioRunViewSet(generics.ListAPIView):
 	serializer_class = UsuariosSerializers
 	def get_queryset(self): 
-		run = self.kwargs['run']
-		return Usuario.objects.filter(run = run)
+		rut = self.kwargs['run']
+		return Usuario.objects.filter(run = rut)
 class TipoUserViewSet(generics.ListAPIView):
 	serializer_class = TipoUserSerializers
 	queryset =TipoUser.objects.all()
