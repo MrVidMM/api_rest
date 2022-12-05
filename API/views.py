@@ -18,8 +18,8 @@ class UsuarioSesionViewSet(generics.ListAPIView):
 
 class UsuarioRunViewSet(generics.ListAPIView):
 	serializer_class = UsuariosSerializers
-	def get_queryset(self): #Recupera un elemento desde al ruta
-		run = self.kwargs['run'] #Recuperamos el parametro ID como argumento
+	def get_queryset(self): 
+		run = self.kwargs['run']
 		return Usuario.objects.filter(run = run)
 class TipoUserViewSet(generics.ListAPIView):
 	serializer_class = TipoUserSerializers
