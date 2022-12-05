@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from .serializers import *
 from .models import *
-from rest_framework import generics
-
+from rest_framework import generics, status
+from rest_framework.response import Response
 # Create your views here.
 class UsuariosViewSet(generics.ListAPIView):
 	queryset = Usuario.objects.all()
@@ -80,3 +80,17 @@ class AsistenciaBuscarViewSet(generics.ListAPIView):
 	def get_queryset(self): #Recupera un elemento desde al ruta
 		id = self.kwargs['run'] #Recuperamos el parametro ID como argumento
 		return Asistencia.objects.filter(run = id)
+
+class AsistenciaModificarViewSet(generics.UpdateAPIView):
+    serializer_class = AsistenciaSerializers
+    def get_queryset(self):
+        id_persona = self.kwargs['run']
+        return Asistencia.objects.filter(run=id_persona)
+    def delete(self,request,id=None):
+        id_persona = id
+        print('--'+id_persona)
+        p = Asistencia.objects.filter(id=id_persona)
+        if p:
+            p.delete()
+            return Response({'message':'producto eliminado'},status = status.HTTP_200_OK)
+        return Response({'error':'no existen reg con estos datos'}, status = status.HTTP_400_BAD_REQUEST)

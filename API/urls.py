@@ -19,6 +19,7 @@ urlpatterns = [
         re_path(r'^api/Secciones/(?P<id_jornada>.+)/$',csrf_exempt(views.SeccionesJornadaViewSet.as_view())),
         re_path(r'^api/Asistencia/$',csrf_exempt(views.AsistenciaViewSet.as_view())),
         re_path(r'^api/Asistencia/(?P<run>.+)/$',csrf_exempt(views.AsistenciaBuscarViewSet.as_view())),
+        re_path(r'^api/Asistencia/(?P<id>.+)/$',csrf_exempt(views.AsistenciaModificarViewSet.as_view())),
         
     ]
 
