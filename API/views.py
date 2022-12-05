@@ -84,12 +84,12 @@ class AsistenciaBuscarViewSet(generics.ListAPIView):
 class AsistenciaModificarViewSet(generics.UpdateAPIView):
     serializer_class = AsistenciaSerializers
     def get_queryset(self):
-        id_persona = self.kwargs['run']
-        return Asistencia.objects.filter(run=id_persona)
-    def delete(self,request,id=None):
-        id_persona = id
-        print('--'+id_persona)
-        p = Asistencia.objects.filter(id=id_persona)
+        run_persona = self.kwargs['run']
+        return Asistencia.objects.filter(run=run_persona)
+    def delete(self,request,run=None):
+        run_persona = run
+        print('--'+run_persona)
+        p = Asistencia.objects.filter(run=run_persona)
         if p:
             p.delete()
             return Response({'message':'producto eliminado'},status = status.HTTP_200_OK)
