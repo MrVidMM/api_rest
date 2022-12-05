@@ -15,6 +15,12 @@ class UsuarioSesionViewSet(generics.ListAPIView):
 		password = self.kwargs['contrasena'] #Recuperamos el parametro ID como argumento
 		#tipo_user = self.kwargs['id_tipo'] #Recuperamos el parametro ID como argumento
 		return Usuario.objects.filter(user = usuario, contrasena = password)
+
+class UsuarioRunViewSet(generics.ListAPIView):
+	serializer_class = UsuariosSerializers
+	def get_queryset(self): #Recupera un elemento desde al ruta
+		run = self.kwargs['run'] #Recuperamos el parametro ID como argumento
+		return Usuario.objects.filter(run = run)
 class TipoUserViewSet(generics.ListAPIView):
 	serializer_class = TipoUserSerializers
 	queryset =TipoUser.objects.all()

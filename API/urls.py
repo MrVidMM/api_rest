@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 urlpatterns = [
         re_path(r'^api/Usuarios/$',csrf_exempt(views.UsuariosViewSet.as_view())),
         re_path(r'^api/Usuarios/(?P<user>.+)/(?P<contrasena>.+)/$',csrf_exempt(views.UsuarioSesionViewSet.as_view())),
+        re_path(r'^api/Usuarios/(?P<run>.+)/$',csrf_exempt(views.UsuarioRunViewSet.as_view())),
         re_path(r'^api/TipoUser/$',csrf_exempt(views.TipoUserViewSet.as_view())),
         re_path(r'^api/TipoUser/(?P<id_tipo>.+)/$',csrf_exempt(views.TipoUserBuscarViewSet.as_view())),
         re_path(r'^api/Asignaturas/$',csrf_exempt(views.AsignaturasViewSet.as_view())),
